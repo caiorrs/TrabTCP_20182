@@ -67,3 +67,23 @@ CUIDADO fetch irá sobrescrever seus arquivos locais com os arquivos remotos
 INSTRUÇÕES WINDOW BUILDER
 
 http://www.ntu.edu.sg/home/ehchua/programming/howto/EclipseJava_HowTo.html#GUIBuider
+
+## Instruções JFugue
+
+download da biblioteca
+
+http://www.jfugue.org/
+
+links adicionais
+
+http://www.jfugue.org/examples.html
+
+http://www.jfugue.org/doc/index.html
+
+## Como importar o JFugue para o projeto
+
+Clique com o botão direito no projeto -> Propriedades -> Java Build Path -> Libraries
+Clique em Add External JARs e selecione o arquivo que baixou
+Clique em Apply e depois em Apply and Close
+
+Agora você já pode criar um arquivo fonte importando as classes da biblioteca conforme os exemplos no link acima.
