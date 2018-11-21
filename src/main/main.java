@@ -13,6 +13,7 @@ public class main {
 		System.out.println("REINICIOU");
 		
 		operacoes.reiniciarReproducao(null, texto);
+		
+		teste.main(null, "texto de teste 123");
 	}
-
 }
