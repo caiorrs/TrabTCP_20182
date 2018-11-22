@@ -6,9 +6,9 @@ public class main {
 		// TODO Auto-generated method stub
 		System.out.println("Commit Inicial");
 		
-		String texto = "ABCDEFGFEDCBA";
+		String texto = "CCCCCCCCCC";
 		
-		operacoes.reproduzir(null, texto, 8); // reproduzir a partir da posicao 0
+		operacoes.reproduzir(null, texto, 0); // reproduzir a partir da posicao 0
 		
 		System.out.println("REINICIOU");
 		
