@@ -3,6 +3,8 @@
  */
 package main;
 
+import org.jfugue.player.ManagedPlayer;
+
 /**
  * @author caiorrs
  *
@@ -13,97 +15,90 @@ import org.jfugue.pattern.*;
 
 public class operacoes {
 
-//	private static String La = "A";
-//	private static String Si = "B";
-//	private static String Do = "C";
-//	private static String Re = "D";
-//	private static String Mi = "E";
-//	private static String Fa = "F";
-//	private static String Sol = "G";
-	
 	/**
 	 * @param args
 	 */
 		public static void reproduzir(String[] args, String texto, int posicao) {
+		
+			final int piano = 0;
+			final int harpsichord = 7; 
+			final int tubularBells = 15;
+			final int panFlute = 76;
+			final int churchOrgan = 20;
+			final int oitavaPadrao = 5;
+			
+			boolean eh_consoante = false;
+			
+			String notaAnterior = "";
+			String notaAtual = "";
+			
+			String instrumentoAtual = "PIANO";
+			int volumeAtual = 0;
+			int oitavaAtual = oitavaPadrao;
 			
 			Player player = new Player();
 
 			int tamanhoEntrada = texto.length();
-			
-			texto = texto.toUpperCase();
-			
-			int j = 0;
-			
+
 			for (int i = posicao; i < tamanhoEntrada; i++) {
 				
 				char caractere = texto.charAt(i);
-				j++; 
 				
 				switch(caractere) {
+					// NOTAS
 					case 'A':
-					case 'a':
-						player.play("A");
-						break;
 					case 'B':
-					case 'b':
-						player.play("B");
-						break;
 					case 'C':
-					case 'c':
-						player.play("C");
-						break;
 					case 'D':
-					case 'd':
-						player.play("D");
-						break;
 					case 'E':
-					case 'e':
-						player.play("E");
-						break;
 					case 'F':
-					case 'f':
-						player.play("F");
-						break;
 					case 'G':
-					case 'g':
-						player.play("G");
+						notaAtual = String.valueOf(caractere);
+						Pattern pattern = new Pattern();
+						pattern.add("I[" + instrumentoAtual + "] " + notaAtual + String.valueOf(oitavaAtual));
+						System.out.println(pattern.toString());
+						player.play(pattern);
 						break;
+					
+					// troca para harpischord
 					case '!':
-						trataSom.dobraVolume(volumeAtual);
+						instrumentoAtual = trataSom.trocaInstrumento(harpsichord);
 						break;
+					
+					// Aumenta o volume em 10%
 					case 'O':
 					case 'o':
 					case 'I':
 					case 'i':
 					case 'U':
 					case 'u':
-						trataSom.metadeVolume(volumeAtual);
+						volumeAtual = trataSom.volumeMaisDezPorcento(volumeAtual);
 						break;
-					case '1':
-					case '3':
-					case '5':
-					case '7':
-					case '9':
-						trataSom.aumentaOitava(oitavaAtual);
-						break;
-					case '0':
-					case '2':
-					case '4':
-					case '6':
-					case '8':
-						trataSom.diminuiOitava(oitavaAtual);
+					case '.':
+					case '?':
+						oitavaAtual = trataSom.aumentaOitava(oitavaAtual);
 						break;
 					case ';':
-						trataSom.aumentaBPM(bpmAtual);
+						instrumentoAtual = trataSom.trocaInstrumento(panFlute);
 						break;
 					case ',':
-						trataSom.diminuiBPM(bpmAtual);
+						instrumentoAtual = trataSom.trocaInstrumento(churchOrgan);
 						break;
 					case '\n':
-						trataSom.trocaInstrumento();
+						instrumentoAtual = trataSom.trocaInstrumento(tubularBells);
+						break;
+					case ' ':
+						trataSom.dobraVolume(volumeAtual);
 						break;
 					default:
-						player.play(" ");
+						eh_consoante = i > 0 && (texto.charAt(i-1) <= 'G' && texto.charAt(i-1) >= 'A');
+						if (eh_consoante) {
+							notaAnterior = String.valueOf(texto.charAt(i-1));
+							Pattern pattern2 = new Pattern();
+							pattern2.add("I[" + instrumentoAtual + "] " + notaAnterior + String.valueOf(oitavaAtual));
+							System.out.println(pattern2.toString());
+							player.play(pattern2);
+						}
 						break;
 				}
 			}

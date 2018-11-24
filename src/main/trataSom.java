@@ -19,20 +19,17 @@ public class trataSom {
 	
 	public static int aumentaOitava(int oitava) {
 		
-		if (oitava < 10) {
+		int oitavaPadrao = 5;
+		
+		// todas as notas tem 10 oitavas, nem todas tem 11 (0-9, 0-10)
+		
+		if (oitava < 9) {
 			oitava++;
 		}
-			
-		return oitava;
-		
-	}
-	
-	public static int diminuiOitava(int oitava) {
-		
-		if (oitava > 0) {
-			oitava--;
+		else {
+			oitava = oitavaPadrao;
 		}
-		
+			
 		return oitava;
 		
 	}
@@ -41,20 +38,44 @@ public class trataSom {
 		return volume * 2;
 	}
 	
-	public static int metadeVolume(int volume) {
-		return volume / 2;
+	public static String trocaInstrumento(int instrumento) {
+		
+		final String piano = "PIANO";
+		final String harpsichord = "HARPSICHORD"; 
+		final String tubularBells = "TUBULAR_BELLS";
+		final String panFlute = "PAN_FLUTE";
+		final String churchOrgan = "CHURCH_ORGAN";
+		
+		String novoInstrumento = piano;
+		
+		switch(instrumento) {
+			case 0:
+				novoInstrumento = piano;
+				break;
+			case 7:
+				novoInstrumento = harpsichord;
+				break;
+			case 15:
+				novoInstrumento = tubularBells;
+				break;
+			case 76:
+				novoInstrumento = panFlute;
+				break;
+			case 20:
+				novoInstrumento = churchOrgan;
+				break;
+			default:
+				novoInstrumento = piano;
+				break;
+		}
+			
+		return novoInstrumento;
 	}
 
-	public static int aumentaBPM(int bpm) {
-		return bpm += 50;
-	}
-	
-	public static int diminuiBPM(int bpm) {
-		return bpm -= 50;
-	}
-	
-	public static void trocaInstrumento() {
-		// usar um random entre os instrumentos disponiveis
+	public static int volumeMaisDezPorcento(int volume) {
+		// TODO Auto-generated method stub
+		volume = (int) (1.1 * volume);
+		return volume;
 	}
 	
 }

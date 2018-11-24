@@ -6,13 +6,13 @@ public class main {
 		// TODO Auto-generated method stub
 		System.out.println("Commit Inicial");
 		
-		String texto = "CCCCCCCCCC";
+		String texto = "C.C.C,C.C.C?;CSVQ?C?C?C?C?;,C";
 		
 		operacoes.reproduzir(null, texto, 0); // reproduzir a partir da posicao 0
 		
-		System.out.println("REINICIOU");
+		//System.out.println("REINICIOU");
 		
-		operacoes.reiniciarReproducao(null, texto);
+		//operacoes.reiniciarReproducao(null, texto);
 	}
 
 }
