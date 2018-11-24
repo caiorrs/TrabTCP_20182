@@ -13,7 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Gui extends JFrame {
 	public static void main(String[] args) {
@@ -21,14 +25,17 @@ public class Gui extends JFrame {
 			public void run() {
 				try {
 					Gui frame = new Gui();
+					Dimension display = Toolkit.getDefaultToolkit().getScreenSize();
 					frame.setVisible(true);
+					frame.setResizable(false);
+					frame.setSize(550, 450);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-	
 	
 	public Gui() {
 		getContentPane().setLayout(null);
@@ -39,6 +46,20 @@ public class Gui extends JFrame {
 		textArea.setLineWrap(true);
 		
 		JButton btnNewButton = new JButton("Reproduzir");
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Commit Inicial");
+				
+				//String texto = "CCCCCCCCCC258";
+				
+				String texto = textArea.getText();
+				
+				operacoes.reproduzir(texto); // reproduzir a partir da posicao 0
+				
+				operacoes.reiniciarReproducao(null, texto);
+			}
+		});
 		btnNewButton.setBounds(46, 352, 105, 23);
 		getContentPane().add(btnNewButton);
 		

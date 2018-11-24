@@ -9,10 +9,4 @@ package main;
  */
 public class reproducao {
 	
-	
-	public static void main(String[] args, String texto) {
-		
-		
-	}
-
 }
