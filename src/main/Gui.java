@@ -49,19 +49,26 @@ public class Gui extends JFrame {
 				
 				String texto = textArea.getText();
 				
-				operacoes.reproduzir(texto); // reproduzir a partir da posicao 0
-				
-				operacoes.reiniciarReproducao(null, texto);
+				operacoes.reproduzir(texto,0); // reproduzir a partir da posicao 0
 			}
 		});
 		btnNewButton.setBounds(46, 352, 105, 23);
 		getContentPane().add(btnNewButton);
 		
 		JButton button_1 = new JButton("Pausar");
+		button_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				operacoes.pausar(); // pausar
+			
+			}
+				
+		});
 		button_1.setBounds(216, 352, 105, 23);
 		getContentPane().add(button_1);
 		
-		JButton button_2 = new JButton("Recomeçar");
+		JButton button_2 = new JButton("RecomeÃ§ar");
 		button_2.setBounds(385, 352, 89, 23);
 		getContentPane().add(button_2);
 		
