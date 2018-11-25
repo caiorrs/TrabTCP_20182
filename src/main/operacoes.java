@@ -17,9 +17,12 @@ public class operacoes {
 	private static int volumeAtual = 10200;
 	private static int instrumentoAtual = 0;
 	private static int oitavaAtual = 5;
-
-		public static void reproduzir(String texto, int posicaoInicial) {
+	/**
+	 * @param args
+	 */
+		public static void reproduzir(String texto) {
 			
+			int posicao = 0;
 			try {
 				System.out.print("reproduzindo: ");
 				int tamanhoEntrada = texto.length();
@@ -194,11 +197,7 @@ public class operacoes {
 
 			return posicaoAtual;
 		}
-
-
-	public static void reiniciarReproducao(String[] args, String texto) {
-		
-	}
+		public static void reiniciarReproducao(String[] args, String texto) {
 
 		public static void parar(String[] args, String[] texto) {
 
@@ -215,9 +214,9 @@ public class operacoes {
 		}
 
 
-
 	public static void reproduzirDoComeco(String texto) {
 		reproduzir(texto, 0);
 	}
+
 
 }
