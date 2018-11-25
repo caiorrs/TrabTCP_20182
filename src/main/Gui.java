@@ -6,10 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileSystemView;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -45,7 +49,7 @@ public class Gui extends JFrame {
 				
 				String texto = textArea.getText();
 				
-				operacoes.reproduzir(texto); // reproduzir a partir da posicao 0
+				///operacoes.reproduzir(texto); // reproduzir a partir da posicao 0
 				
 				operacoes.reiniciarReproducao(null, texto);
 			}
@@ -62,10 +66,28 @@ public class Gui extends JFrame {
 		getContentPane().add(button_2);
 		
 		JButton btnCarregarTexto = new JButton("Carregar Texto");
+		btnCarregarTexto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser File = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				int returnValue = File.showOpenDialog(null);
+				
+				if(returnValue == JFileChooser.APPROVE_OPTION)
+				{
+					arquivo arquivo = new arquivo();
+					arquivo.leArquivo(File.getSelectedFile());
+					textArea.setText(arquivo.getTexto());
+				}
+			}
+		});
 		btnCarregarTexto.setBounds(118, 299, 123, 23);
 		getContentPane().add(btnCarregarTexto);
 		
 		JButton button = new JButton("Limpar campo");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textArea.setText(null);
+			}
+		});
 		button.setBounds(297, 299, 123, 23);
 		getContentPane().add(button);
 		
