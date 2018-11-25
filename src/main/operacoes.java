@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package main;
 
@@ -25,19 +25,19 @@ public class operacoes {
 	private static int volumeAtual = 10200;
 	private static int instrumentoAtual = 0;
 	private static int oitavaAtual = 3;
-	
+
 	/**
 	 * @param args
 	 */
 		public static void reproduzir(String[] args, String texto, int posicao) {
-				
+
 			try {
 				System.out.print("reproduzindo: ");
 				int tamanhoEntrada = texto.length();
 				StringBuilder parsedEntry = new StringBuilder();
-				
+
 				//ENTRADA  = "BAGFEDC";
-				
+
 				for (int i = posicao; i < tamanhoEntrada; i++) {
 					switch(texto.charAt(i)) {
 					// Notas
@@ -51,7 +51,7 @@ public class operacoes {
 							parsedEntry.append(texto.charAt(i));
 							parsedEntry.append(oitavaAtual);
 							break;
-							
+
 					// Instrumentos
 						case '!':
 							parsedEntry.append("I7");
@@ -83,7 +83,7 @@ public class operacoes {
 							instrumentoAtual+= Character.getNumericValue(texto.charAt(i));
 							parsedEntry.append(instrumentoAtual);
 							break;
-							
+
 					// Volume
 						case ' ':
 							volumeAtual = volumeAtual  * 2;
@@ -100,7 +100,7 @@ public class operacoes {
 							parsedEntry.append("X[Volume]=");
 							parsedEntry.append(volumeAtual);
 							break;
-					
+
 					// Oitavas
 						case '?':
 						case '.':
@@ -113,7 +113,7 @@ public class operacoes {
 								oitavaAtual = 3;
 							}
 							break;
-							
+
 					// Else
 						default: // Cobre tanto minusculas, quanto consoantes quanto qualquer outra coisa
 							if (i > 0)
@@ -140,7 +140,7 @@ public class operacoes {
 						parsedEntry.append(" ");
 					}
 				}
-				
+
 				System.out.print(parsedEntry);
 
 				StaccatoParser parser = new StaccatoParser();
@@ -161,9 +161,9 @@ public class operacoes {
 				mue.printStackTrace();
 				System.out.print("mue");
 			}
-			
+
 		}
-		
+
 		public static int pausar() {
 			if(isPlaying == true)
 			{
@@ -176,31 +176,35 @@ public class operacoes {
 				isPlaying = true;
 			}
 			int posicaoAtual = 5;
-			
+
 			return posicaoAtual;
 		}
 
-		public static void reiniciarReproducao(String[] args, String texto) {
-			
-			int posicaoAtual = 0;
-			
-			reproduzir(null, texto, posicaoAtual);
-					
-			
-		}
-		
+		int posicaoAtual = 5;
+
+		return posicaoAtual;
+	}
+
+	public static void reiniciarReproducao(String[] args, String texto) {
+
 		public static void parar(String[] args, String[] texto) {
-			
+
 		}
-		
+
 		public static boolean isFinished()
-		{ 
+		{
 			return player.isFinished();
 		}
-		
+
 		public static long getPosition()
 		{
 			return player.getTickPosition();
 		}
+
+	}
+
+	public static void reproduzir_Comecor(String[] args, String[] texto) {
+
+	}
 
 }
