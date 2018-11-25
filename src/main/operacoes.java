@@ -180,12 +180,10 @@ public class operacoes {
 			return posicaoAtual;
 		}
 
-		int posicaoAtual = 5;
-
-		return posicaoAtual;
-	}
 
 	public static void reiniciarReproducao(String[] args, String texto) {
+		
+	}
 
 		public static void parar(String[] args, String[] texto) {
 
@@ -201,7 +199,7 @@ public class operacoes {
 			return player.getTickPosition();
 		}
 
-	}
+
 
 	public static void reproduzir_Comecor(String[] args, String[] texto) {
 

@@ -45,7 +45,7 @@ public class Gui extends JFrame {
 				
 				String texto = textArea.getText();
 				
-				operacoes.reproduzir(texto); // reproduzir a partir da posicao 0
+				operacoes.reproduzir(null, texto, 0); // reproduzir a partir da posicao 0
 				
 				operacoes.reiniciarReproducao(null, texto);
 			}
@@ -54,6 +54,14 @@ public class Gui extends JFrame {
 		getContentPane().add(btnNewButton);
 		
 		JButton button_1 = new JButton("Pausar");
+		button_1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				operacoes.pausar(); // pausar
+				
+			}
+		});
 		button_1.setBounds(216, 352, 105, 23);
 		getContentPane().add(button_1);
 		
