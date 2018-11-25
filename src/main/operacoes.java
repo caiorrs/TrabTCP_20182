@@ -4,8 +4,12 @@
 package main;
 
 import org.jfugue.player.ManagedPlayer;
+import org.jfugue.player.ManagedPlayerListener;
 import org.staccato.StaccatoParser;
 import org.jfugue.midi.MidiParserListener;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
@@ -150,6 +154,44 @@ public class operacoes {
 				parser.parse(parsedEntry.toString());
 				sequence = listener.getSequence();
 
+				player.addManagedPlayerListener(new ManagedPlayerListener() {
+					@Override
+					public void onFinished() {
+						System.out.println("Finished");					
+					}
+
+					@Override
+					public void onPaused() {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void onReset() {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void onResumed() {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void onSeek(long arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void onStarted(Sequence arg0) {
+						// TODO Auto-generated method stub
+						System.out.println("\nStarted");
+						
+					}
+				});
+				
 				player.start(sequence);
 				isPlaying = true;
 				System.out.print(player.isPlaying());
