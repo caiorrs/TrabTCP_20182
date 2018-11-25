@@ -49,7 +49,7 @@ public class Gui extends JFrame {
 				
 				String texto = textArea.getText();
 				
-				///operacoes.reproduzir(texto); // reproduzir a partir da posicao 0
+				operacoes.reproduzir(texto); // reproduzir a partir da posicao 0
 				
 				operacoes.reiniciarReproducao(null, texto);
 			}

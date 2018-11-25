@@ -29,8 +29,10 @@ public class operacoes {
 	/**
 	 * @param args
 	 */
-		public static void reproduzir(String[] args, String texto, int posicao) {
+		public static void reproduzir(String texto) {
 
+			
+			int posicao = 0;
 			try {
 				System.out.print("reproduzindo: ");
 				int tamanhoEntrada = texto.length();
