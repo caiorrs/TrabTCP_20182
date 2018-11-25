@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class arquivo extends texto{
 	
 	
-	public void leArquivo(File arquivo)
+	public static void leArquivo(File arquivo)
 	{
 		FileInputStream bufferfile = null;
 		String tempTexto = "";

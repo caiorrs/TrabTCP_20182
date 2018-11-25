@@ -3,7 +3,7 @@ package main;
 public class texto {
 	private static String texto;
 
-	public String getTexto() {
+	public static String getTexto() {
 		return texto;
 	}
 
