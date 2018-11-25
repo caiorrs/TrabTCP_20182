@@ -21,18 +21,15 @@ public class trataTexto extends texto {
 		Player player = new Player();
 		controleSom trataSom = new controleSom();
 		
-		int tamanhoEntrada = texto.length();
+		int tamanhoEntradaDoTexto = texto.length();
 		texto = texto.toUpperCase();
-
-		int j = 0;
 
 		int posicao = 0;
 
-		for(int i = posicao;i<tamanhoEntrada;i++)
+		for(int i = posicao;i<tamanhoEntradaDoTexto;i++)
 		{
 
 			char caractere = texto.charAt(i);
-			j++;
 
 			if (Character.isDigit(caractere)) {
 				int numero = Integer.parseInt(Character.toString(caractere));

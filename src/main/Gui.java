@@ -1,19 +1,13 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -25,7 +19,6 @@ public class Gui extends JFrame {
 			public void run() {
 				try {
 					Gui frame = new Gui();
-					Dimension display = Toolkit.getDefaultToolkit().getScreenSize();
 					frame.setVisible(true);
 					frame.setResizable(false);
 					frame.setSize(550, 450);
@@ -49,9 +42,6 @@ public class Gui extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Commit Inicial");
-				
-				//String texto = "CCCCCCCCCC258";
 				
 				String texto = textArea.getText();
 				
@@ -91,9 +81,7 @@ public class Gui extends JFrame {
 		txtNomeGenericoDo.setColumns(10);
 	}
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	
 	private JTextField txtNomeGenericoDo;
 
 }
