@@ -3,10 +3,10 @@ package main;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,64 +17,86 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Gui extends JFrame {
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+public class Gui extends JFrame
+{
+	
+	private JLabel txtNomePrograma;
+	
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				try
+				{
 					Gui frame = new Gui();
 					frame.setVisible(true);
 					frame.setResizable(false);
 					frame.setSize(550, 450);
 					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
 	
-	public Gui() {
+	
+	
+	public Gui()
+	{
 		getContentPane().setLayout(null);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(89, 121, 346, 156);
-		getContentPane().add(textArea);
-		textArea.setLineWrap(true);
 		
-		JButton btnNewButton = new JButton("Reproduzir");
-		btnNewButton.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent arg0) {
-				
-				String texto = textArea.getText();
+		// Caixa de Texto
+		JTextArea entradaTexto = new JTextArea();
+		entradaTexto.setBounds(89, 121, 346, 156);
+		getContentPane().add(entradaTexto);
+		entradaTexto.setLineWrap(true);
+		entradaTexto.setWrapStyleWord(true);
+
+		// Botão Reproduzir
+		JButton btnReproduzir = new JButton("Reproduzir");
+		btnReproduzir.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				String texto = entradaTexto.getText();
 				
 				operacoes.reproduzir(texto,0); // reproduzir a partir da posicao 0
 			}
 		});
-		btnNewButton.setBounds(46, 352, 105, 23);
-		getContentPane().add(btnNewButton);
+		btnReproduzir.setBounds(46, 352, 105, 23);
+		getContentPane().add(btnReproduzir);
 		
-		JButton button_1 = new JButton("Pausar");
-		button_1.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent arg0) {
-				
+		// Botão Pausar
+		JButton btnPausar = new JButton("Pausar");
+		btnPausar.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				operacoes.pausar(); // pausar
-			
 			}
 				
 		});
-		button_1.setBounds(216, 352, 105, 23);
-		getContentPane().add(button_1);
+		btnPausar.setBounds(216, 352, 105, 23);
+		getContentPane().add(btnPausar);
 		
-		JButton button_2 = new JButton("Recomeçar");
-		button_2.setBounds(385, 352, 89, 23);
-		getContentPane().add(button_2);
 		
-		JButton btnCarregarTexto = new JButton("Carregar Texto");
-		btnCarregarTexto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		// Botão Reiniciar Reprodução
+		JButton btnReiniciar = new JButton("Reiniciar");
+		btnReiniciar.setBounds(385, 352, 89, 23);
+		getContentPane().add(btnReiniciar);
+		
+		
+		// Botão para abrir arquivo
+		JButton btnCarregarTexto = new JButton("Abir arquivo");
+		btnCarregarTexto.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
 				JFileChooser File = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 				int returnValue = File.showOpenDialog(null);
 				
@@ -82,35 +104,31 @@ public class Gui extends JFrame {
 				{
 					arquivo arquivo = new arquivo();
 					arquivo.leArquivo(File.getSelectedFile());
-					textArea.setText(arquivo.getTexto());
+					entradaTexto.setText(arquivo.getTexto());
 				}
 			}
 		});
 		btnCarregarTexto.setBounds(118, 299, 123, 23);
 		getContentPane().add(btnCarregarTexto);
 		
-		JButton button = new JButton("Limpar campo");
-		button.addActionListener(new ActionListener() {
+		// Botão para Limpar a Caixa de Texto
+		JButton btnLimparTexto = new JButton("Limpar texto");
+		btnLimparTexto.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0) {
-				textArea.setText(null);
+				entradaTexto.setText(null);
 			}
 		});
-		button.setBounds(297, 299, 123, 23);
-		getContentPane().add(button);
+		btnLimparTexto.setBounds(297, 299, 123, 23);
+		getContentPane().add(btnLimparTexto);
 		
-		txtNomeGenericoDo = new JTextField();
-		txtNomeGenericoDo.setHorizontalAlignment(SwingConstants.CENTER);
-		txtNomeGenericoDo.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		txtNomeGenericoDo.setMinimumSize(new Dimension(6, 43));
-		txtNomeGenericoDo.setSize(new Dimension(9, 9));
-		txtNomeGenericoDo.setEditable(false);
-		txtNomeGenericoDo.setText("Nome generico do programa");
-		txtNomeGenericoDo.setBounds(89, 53, 346, 57);
-		getContentPane().add(txtNomeGenericoDo);
-		txtNomeGenericoDo.setColumns(10);
+		txtNomePrograma = new JLabel();
+		txtNomePrograma.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNomePrograma.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		txtNomePrograma.setMinimumSize(new Dimension(6, 43));
+		txtNomePrograma.setSize(new Dimension(9, 9));
+		txtNomePrograma.setText("Text To Music");
+		txtNomePrograma.setBounds(89, 53, 346, 57);
+		getContentPane().add(txtNomePrograma);
 	}
-
-	
-	private JTextField txtNomeGenericoDo;
-
 }
