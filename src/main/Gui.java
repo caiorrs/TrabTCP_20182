@@ -35,6 +35,7 @@ public class Gui extends JFrame
 					frame.setResizable(false);
 					frame.setSize(550, 450);
 					frame.setLocationRelativeTo(null);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				catch (Exception e) {
 					e.printStackTrace();
