@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
 
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class Gui extends JFrame
@@ -57,6 +58,7 @@ public class Gui extends JFrame
 		JButton btnLimparTexto = new JButton("Limpar texto");
 		JButton btnReproduzir = new JButton("Reproduzir");
 		JButton btnPausar = new JButton("Pausar");
+		JButton btnParar = new JButton("Parar"); // Stop
 		JButton btnReiniciar = new JButton("Reiniciar");
 		
 /*===================================================================*/		
@@ -95,7 +97,7 @@ public class Gui extends JFrame
 				
 				if(returnValue == JFileChooser.APPROVE_OPTION)
 				{
-					arquivo arquivo = new arquivo();
+					Arquivo arquivo = new Arquivo();
 					arquivo.leArquivo(File.getSelectedFile());
 					entradaTexto.setText(arquivo.getTexto());
 				}
@@ -109,8 +111,16 @@ public class Gui extends JFrame
 		btnSalvarMidi.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) {
-				//operacoes.salvarMidi();
 				System.out.println("SALVAR MIDI AINDA NAO IMPLEMENTADO!");
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Digite o nome do arquivo para salvar");
+				 
+				int userSelection = fileChooser.showSaveDialog(getContentPane());
+				 
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+				    Arquivo arquivo = new Arquivo();
+				    //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+				}
 			}
 		});
 		btnSalvarMidi.setBounds(200, 299, 150, 23);
@@ -128,7 +138,7 @@ public class Gui extends JFrame
 		getContentPane().add(btnLimparTexto);
 		
 /*===================================================================*/
-		// Segunda linha de botões - Reproduzir - Pausar - Reiniciar Reprodução 
+		// Segunda linha de botões - Reproduzir - Pausar - Parar - Reiniciar Reprodução 
 /*===================================================================*/
 		// Botão Reproduzir
 		
@@ -137,13 +147,18 @@ public class Gui extends JFrame
 			
 			public void actionPerformed(ActionEvent arg0)
 			{
-				
-				String texto = entradaTexto.getText();
-				
-				operacoes.reproduzir(texto);
+				if(Operacoes.isFinished() || !Operacoes.isStarted())
+				{
+					String texto = entradaTexto.getText();
+					Operacoes.reproduzir(texto);
+				}
+				else if(Operacoes.isStarted()) 
+				{
+					Operacoes.parar();
+				}
 			}
 		});
-		btnReproduzir.setBounds(46, 352, 120, 23);
+		btnReproduzir.setBounds(20, 352, 120, 23);
 		getContentPane().add(btnReproduzir);
 		
 		// Botão Pausar
@@ -152,20 +167,45 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (!operacoes.isFinished())
+				if (!Operacoes.isFinished() && Operacoes.isStarted())
 				{
-					operacoes.pausar();
+					Operacoes.pausar();
 				}
 			}
-				
 		});
-		btnPausar.setBounds(216, 352, 105, 23);
+		btnPausar.setBounds(150, 352, 105, 23);
 		getContentPane().add(btnPausar);
+		
+		// Botão Parar
+		
+		btnParar.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				if (Operacoes.isPlaying())
+				{
+					Operacoes.parar();
+				}
+			}
+		});
+		btnParar.setBounds(280, 352, 80, 23);
+		getContentPane().add(btnParar);
 		
 		
 		// Botão Reiniciar Reprodução
 		
-		btnReiniciar.setBounds(385, 352, 100, 23);
+		btnReiniciar.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				String texto = entradaTexto.getText();
+				
+				Operacoes.parar();
+				Operacoes.reproduzir(texto);
+			}
+		});
+		
+		btnReiniciar.setBounds(400, 352, 100, 23);
 		getContentPane().add(btnReiniciar);
 	}
 }

@@ -1,6 +1,6 @@
 package main;
 
-public class som
+public class Som
 {	
 	private static int volumeMaximo = 16383;
 	private static int maiorOitava = 9; // todas as notas tem oitavas de 0 a 9 mas nem todas tem 0 a 10

@@ -1,6 +1,6 @@
 package main;
 
-public class texto
+public class Texto
 {
 	private static String texto;
 
@@ -13,5 +13,4 @@ public class texto
 	{
 		texto = buffertexto;
 	}
-	
 }
