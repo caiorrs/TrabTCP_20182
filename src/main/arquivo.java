@@ -6,9 +6,8 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-public class arquivo extends texto{
-	
-	
+public class arquivo extends texto
+{
 	public static void leArquivo(File arquivo)
 	{
 		FileInputStream bufferfile = null;
@@ -23,10 +22,12 @@ public class arquivo extends texto{
 			{
 				tempTexto += (char) content;
 			}
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			JOptionPane.showMessageDialog(null, "Erro na abertura do arquivo");
-		} finally
+		}
+		finally
 		{
 			try
 			{
@@ -34,7 +35,8 @@ public class arquivo extends texto{
 				{
 					bufferfile.close();
 				}
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				JOptionPane.showMessageDialog(null, "Erro ao fechar o arquivo");
 			}
