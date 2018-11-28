@@ -22,7 +22,7 @@ public class som
 	
 	public static int dobraVolume(int volume)
 	{
-		if (volume < volumeMaximo)
+		if (volume * 2 < volumeMaximo)
 		{
 			volume = volume  * 2;
 		}
@@ -36,7 +36,7 @@ public class som
 	
 	public static int aumentaVolumeDezPorcento(int volume)
 	{
-		if (volume < volumeMaximo)
+		if (volume * 1.1 < volumeMaximo)
 		{
 			volume = (int) 1.1 * volume;
 		}
@@ -50,7 +50,13 @@ public class som
 	
 	public static int trocaInstrumento(int instrumento, int digito)
 	{
-		return instrumento + digito;
+		if((instrumento + digito) > 127)
+			instrumento = (instrumento + digito) % 128;
+			// se estiver no instrumento 125 e o digito for 9 -> 134%128 = instrumento 6
+		else
+			instrumento = instrumento + digito;
+		
+		return instrumento;
 	}
 	
 	public static int trocaInstrumento(int instrumento)
