@@ -7,6 +7,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,8 +21,8 @@ import java.awt.event.ActionEvent;
 
 public class Gui extends JFrame
 {
-	
 	private JLabel txtNomePrograma;
+	private String titulo = "Text Music Player";
 	
 	public static void main(String[] args)
 	{
@@ -32,11 +33,11 @@ public class Gui extends JFrame
 				try
 				{
 					Gui frame = new Gui();
-					frame.setVisible(true);
 					frame.setResizable(false);
 					frame.setSize(550, 450);
 					frame.setLocationRelativeTo(null);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setVisible(true);
 				}
 				catch (Exception e) {
 					e.printStackTrace();
@@ -49,9 +50,11 @@ public class Gui extends JFrame
 	
 	public Gui()
 	{
-		getContentPane().setLayout(null);
+		
+		setTitle(titulo);
 		
 		// Componentes
+		//JFrame janela = new JFrame();
 		JTextArea entradaTexto = new JTextArea();
 		JButton btnCarregarTexto = new JButton("Abrir arquivo");
 		JButton btnSalvarMidi = new JButton("Salvar em MIDI");
@@ -60,6 +63,10 @@ public class Gui extends JFrame
 		JButton btnPausar = new JButton("Pausar");
 		JButton btnParar = new JButton("Parar"); // Stop
 		JButton btnReiniciar = new JButton("Reiniciar");
+		//JScrollPane sp = new JScrollPane(entradaTexto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		
+		setLayout(null);
 		
 /*===================================================================*/		
 		// Título do Programa
@@ -70,16 +77,16 @@ public class Gui extends JFrame
 		txtNomePrograma.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtNomePrograma.setMinimumSize(new Dimension(6, 43));
 		txtNomePrograma.setSize(new Dimension(9, 9));
-		txtNomePrograma.setText("Text To Music");
+		txtNomePrograma.setText(titulo);
 		txtNomePrograma.setBounds(89, 53, 346, 57);
-		getContentPane().add(txtNomePrograma);
+		add(txtNomePrograma);
 		
 /*===================================================================*/		
 		// Caixa de Texto
 /*===================================================================*/		
 		
 		entradaTexto.setBounds(89, 121, 346, 156);
-		getContentPane().add(entradaTexto);
+		add(entradaTexto);
 		entradaTexto.setLineWrap(true);
 		entradaTexto.setWrapStyleWord(true);
 
@@ -104,7 +111,7 @@ public class Gui extends JFrame
 			}
 		});
 		btnCarregarTexto.setBounds(46, 299, 150, 23);
-		getContentPane().add(btnCarregarTexto);
+		add(btnCarregarTexto);
 		
 		// Botão para Salvar em MIDI
 		
@@ -124,7 +131,7 @@ public class Gui extends JFrame
 			}
 		});
 		btnSalvarMidi.setBounds(200, 299, 150, 23);
-		getContentPane().add(btnSalvarMidi);
+		add(btnSalvarMidi);
 		
 		// Botão para Limpar a Caixa de Texto
 		
@@ -135,7 +142,7 @@ public class Gui extends JFrame
 			}
 		});
 		btnLimparTexto.setBounds(380, 299, 123, 23);
-		getContentPane().add(btnLimparTexto);
+		add(btnLimparTexto);
 		
 /*===================================================================*/
 		// Segunda linha de botões - Reproduzir - Pausar - Parar - Reiniciar Reprodução 
@@ -159,7 +166,7 @@ public class Gui extends JFrame
 			}
 		});
 		btnReproduzir.setBounds(20, 352, 120, 23);
-		getContentPane().add(btnReproduzir);
+		add(btnReproduzir);
 		
 		// Botão Pausar
 		
@@ -174,7 +181,7 @@ public class Gui extends JFrame
 			}
 		});
 		btnPausar.setBounds(150, 352, 105, 23);
-		getContentPane().add(btnPausar);
+		add(btnPausar);
 		
 		// Botão Parar
 		
@@ -189,7 +196,7 @@ public class Gui extends JFrame
 			}
 		});
 		btnParar.setBounds(280, 352, 80, 23);
-		getContentPane().add(btnParar);
+		add(btnParar);
 		
 		
 		// Botão Reiniciar Reprodução
@@ -206,6 +213,6 @@ public class Gui extends JFrame
 		});
 		
 		btnReiniciar.setBounds(400, 352, 100, 23);
-		getContentPane().add(btnReiniciar);
+		add(btnReiniciar);
 	}
 }
