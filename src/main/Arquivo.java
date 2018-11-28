@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-public class arquivo extends texto
+public class Arquivo extends Texto
 {
 	public static void leArquivo(File arquivo)
 	{
