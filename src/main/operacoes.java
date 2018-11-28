@@ -18,12 +18,13 @@ public class operacoes
 	private static int instrumentoAtual = 0;
 	private static int oitavaAtual = 5;
 
-	public static void reproduzir(String texto, int posicaoInicial)
+	public static void reproduzir(String texto)
 	{
 		
 		boolean notaAnteriorValida = false;
 		boolean caractereEhDigito = false;
 		int digito = 0;
+		int posicaoInicial = 0;
 		char caractere = ' ';
 		char caractereAnterior = ' ';
 		
@@ -215,7 +216,11 @@ public class operacoes
 		}
 	}
 
-
+	public static boolean isStarted() {
+		
+		return player.isStarted();
+	}
+	
 	public static void reiniciarReproducao(String texto)
 	{
 		player.reset();
@@ -229,6 +234,11 @@ public class operacoes
 	public static boolean isFinished()
 	{
 		return player.isFinished();
+	}
+	
+	public static boolean isPlaying()
+	{
+		return player.isPlaying();
 	}
 
 	public static long getPosition()
