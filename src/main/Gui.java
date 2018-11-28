@@ -68,7 +68,7 @@ public class Gui extends JFrame
 		txtNomePrograma.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		txtNomePrograma.setMinimumSize(new Dimension(6, 43));
 		txtNomePrograma.setSize(new Dimension(9, 9));
-		txtNomePrograma.setText("Text To Music");
+		txtNomePrograma.setText("Text Music player");
 		txtNomePrograma.setBounds(89, 53, 346, 57);
 		getContentPane().add(txtNomePrograma);
 		

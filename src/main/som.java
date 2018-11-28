@@ -2,10 +2,48 @@ package main;
 
 public class som
 {	
-	private static int volumeMaximo = 16383;
-	private static int maiorOitava = 9; // todas as notas tem oitavas de 0 a 9 mas nem todas tem 0 a 10
-	private static int oitavaPadrao = 5; // segundo a biblioteca (na versao 4)
+	final static int volumeMaximo = 16383;
+	final static int maiorOitava = 9; // todas as notas tem oitavas de 0 a 9 mas nem todas tem 0 a 10
+	final static int oitavaPadrao = 5; // segundo a biblioteca (na versao 4)
+	final static int volumeInicial = 10200;
+	final static int instrumentoInicial = 0;
+	final static int oitavaInicial = 5;
 	
+	
+	private static int volumeAtual = volumeInicial;
+	private static int instrumentoAtual = instrumentoInicial;
+	private static int oitavaAtual = oitavaInicial;
+	
+	
+	
+	public static int getVolumeAtual() {
+		return volumeAtual;
+	}
+
+	public static void setVolumeAtual(int volumeAtual) {
+		som.volumeAtual = volumeAtual;
+	}
+
+	public static void setVolumeAtual(double volumeAtual) {
+		som.volumeAtual = (int) volumeAtual;
+	}
+	
+	public static int getInstrumentoAtual() {
+		return instrumentoAtual;
+	}
+
+	public static void setInstrumentoAtual(int instrumentoAtual) {
+		som.instrumentoAtual = instrumentoAtual;
+	}
+
+	public static int getOitavaAtual() {
+		return oitavaAtual;
+	}
+
+	public static void setOitavaAtual(int oitavaAtual) {
+		som.oitavaAtual = oitavaAtual;
+	}
+
 	public static int aumentaOitava(int oitava)
 	{
 		if(oitava  < maiorOitava)
