@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
 
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 
 public class Gui extends JFrame
@@ -109,8 +110,16 @@ public class Gui extends JFrame
 		btnSalvarMidi.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) {
-				//operacoes.salvarMidi();
 				System.out.println("SALVAR MIDI AINDA NAO IMPLEMENTADO!");
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Digite o nome do arquivo para salvar");
+				 
+				int userSelection = fileChooser.showSaveDialog(getContentPane());
+				 
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+				    arquivo arquivo = new arquivo();
+				    //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+				}
 			}
 		});
 		btnSalvarMidi.setBounds(200, 299, 150, 23);

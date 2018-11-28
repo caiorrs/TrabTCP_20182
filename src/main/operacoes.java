@@ -145,7 +145,7 @@ public class operacoes
 				@Override
 				public void onFinished()
 				{
-					System.out.println("Finished");					
+					System.out.println("Finished");
 				}
 
 				@Override
