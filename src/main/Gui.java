@@ -15,6 +15,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
 
+import org.jfugue.pattern.Pattern;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.event.ActionEvent;
@@ -118,15 +120,19 @@ public class Gui extends JFrame
 		btnSalvarMidi.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("SALVAR MIDI AINDA NAO IMPLEMENTADO!");
+				//System.out.println("SALVAR MIDI AINDA NAO IMPLEMENTADO!");
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Digite o nome do arquivo para salvar");
 				 
 				int userSelection = fileChooser.showSaveDialog(getContentPane());
 				 
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
-				    Arquivo arquivo = new Arquivo();
-				    //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+					String texto = entradaTexto.getText();
+					StringBuilder parsedEntry = parseTexto.parse(texto);
+					Pattern patternParaSalvar = new Pattern(parsedEntry.toString());
+
+					Arquivo.escreveMIDI(patternParaSalvar, fileChooser.getSelectedFile());
+					//System.out.println("Save as file: " + fileToSave.getAbsolutePath());
 				}
 			}
 		});
