@@ -6,6 +6,9 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import org.jfugue.midi.MidiFileManager;
+import org.jfugue.pattern.Pattern;
+
 public class Arquivo extends Texto
 {
 	public static void leArquivo(File arquivo)
@@ -42,5 +45,14 @@ public class Arquivo extends Texto
 			}
 		}
 	setTexto(tempTexto);
+	}
+	
+	public static void escreveMIDI(Pattern pattern, File arquivo)
+	{
+		try {
+			MidiFileManager.savePatternToMidi(pattern, arquivo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
