@@ -37,26 +37,26 @@ public class Operacoes
 				@Override
 				public void onFinished()
 				{
-					System.out.println("Finished");
+					// TODO Auto-generated method stub
 				}
 
 				@Override
 				public void onPaused()
 				{
-					System.out.println("Paused");
+					// TODO Auto-generated method stub
 					
 				}
 
 				@Override
 				public void onReset()
 				{
-					System.out.println("Reseted");
+					// TODO Auto-generated method stub
 				}
 
 				@Override
 				public void onResumed()
 				{
-					System.out.println("Resumed");
+					// TODO Auto-generated method stub
 					
 				}
 
@@ -71,7 +71,6 @@ public class Operacoes
 				public void onStarted(Sequence arg0)
 				{
 					// TODO Auto-generated method stub
-					System.out.println("Started");
 				}
 			});
 			
@@ -109,11 +108,6 @@ public class Operacoes
 		return player.isStarted();
 	}
 	
-	public static void reiniciarReproducao(String texto)
-	{
-		player.reset();
-	}
-
 	public static void parar()
 	{
 		player.reset();

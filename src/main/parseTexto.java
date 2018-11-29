@@ -5,6 +5,12 @@ public class parseTexto{
 	private static int volumeAtual = 10200;
 	private static int instrumentoAtual = 0;
 	private static int oitavaAtual = 5;
+	private static String volume = "X[Volume]=";
+	
+	private static final int harpsichord = 7;
+	private static final int tubularBells = 15;
+	private static final int panFlute = 76;
+	private static final int churchOrgan = 20;
 
 	public static StringBuilder parse(String texto) {
 		
@@ -50,24 +56,24 @@ public class parseTexto{
 				// Instrumentos
 					case '!':
 						parsedEntry.append("I7");
-						instrumentoAtual = 7;
+						instrumentoAtual = harpsichord;
 						break;
 					case ';':
 						parsedEntry.append("I76");
-						instrumentoAtual = 76;
+						instrumentoAtual = panFlute;
 						break;
 					case '\n':
 						parsedEntry.append("I15");
-						instrumentoAtual = 15;
+						instrumentoAtual = tubularBells;
 						break;
 					case ',':
 						parsedEntry.append("I20");
-						instrumentoAtual = 20;
+						instrumentoAtual = churchOrgan;
 						break;
 				// Volume
 					case ' ':
 						volumeAtual = Som.dobraVolume(volumeAtual);
-						parsedEntry.append("X[Volume]=");
+						parsedEntry.append(volume);
 						parsedEntry.append(volumeAtual);
 						break;
 					case 'i':
@@ -77,7 +83,7 @@ public class parseTexto{
 					case 'u':
 					case 'U':
 						volumeAtual = Som.aumentaVolumeDezPorcento(volumeAtual);
-						parsedEntry.append("X[Volume]=");
+						parsedEntry.append(volume);
 						parsedEntry.append(volumeAtual);
 						break;
 				// Oitavas
@@ -91,6 +97,7 @@ public class parseTexto{
 						{
 							caractereAnterior = texto.charAt(i-1);
 							notaAnteriorValida = caractereAnterior >= 'A' && caractereAnterior <= 'G';
+							
 							if (notaAnteriorValida)
 							{
 								parsedEntry.append(texto.charAt(i-1));
