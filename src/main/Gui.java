@@ -23,6 +23,7 @@ public class Gui extends JFrame
 {
 	private JLabel txtNomePrograma;
 	private String titulo = "Text Music Player";
+	private static boolean toggleTexto = false;
 	
 	public static void main(String[] args)
 	{
@@ -63,7 +64,7 @@ public class Gui extends JFrame
 		JButton btnPausar = new JButton("Pausar");
 		JButton btnParar = new JButton("Parar"); // Stop
 		JButton btnReiniciar = new JButton("Reiniciar");
-		//JScrollPane sp = new JScrollPane(entradaTexto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane sp = new JScrollPane(entradaTexto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		
 		setLayout(null);
@@ -85,10 +86,13 @@ public class Gui extends JFrame
 		// Caixa de Texto
 /*===================================================================*/		
 		
-		entradaTexto.setBounds(89, 121, 346, 156);
-		add(entradaTexto);
+		//entradaTexto.setBounds(89, 121, 346, 156);
+		//add(entradaTexto);
 		entradaTexto.setLineWrap(true);
 		entradaTexto.setWrapStyleWord(true);
+		sp.setBounds(89, 121, 346, 156);
+		add(sp);
+		
 
 /*===================================================================*/
 		// Primeira linha de botões - Abrir Arquivo - Salvar para Midi - Limpar Texto
@@ -154,6 +158,9 @@ public class Gui extends JFrame
 			
 			public void actionPerformed(ActionEvent arg0)
 			{
+				btnPausar.setText("Pausar");
+				toggleTexto = false;
+				
 				if(Operacoes.isFinished() || !Operacoes.isStarted())
 				{
 					String texto = entradaTexto.getText();
@@ -161,7 +168,9 @@ public class Gui extends JFrame
 				}
 				else if(Operacoes.isStarted()) 
 				{
+					String texto = entradaTexto.getText();
 					Operacoes.parar();
+					Operacoes.reproduzir(texto);
 				}
 			}
 		});
@@ -170,12 +179,27 @@ public class Gui extends JFrame
 		
 		// Botão Pausar
 		
+		
+		
 		btnPausar.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (!Operacoes.isFinished() && Operacoes.isStarted())
+				
+				
+				
+				if (Operacoes.isPlaying() || Operacoes.isPaused())
 				{
+					if(!toggleTexto)
+					{
+						btnPausar.setText("Continuar");
+					}
+					else
+					{
+						btnPausar.setText("Pausar");
+					}
+					toggleTexto = !toggleTexto;
+					
 					Operacoes.pausar();
 				}
 			}
@@ -191,6 +215,8 @@ public class Gui extends JFrame
 			{
 				if (Operacoes.isPlaying())
 				{
+					btnPausar.setText("Pausar");
+					toggleTexto = false;
 					Operacoes.parar();
 				}
 			}
@@ -207,6 +233,8 @@ public class Gui extends JFrame
 			{
 				String texto = entradaTexto.getText();
 				
+				btnPausar.setText("Pausar");
+				toggleTexto = false;
 				Operacoes.parar();
 				Operacoes.reproduzir(texto);
 			}
