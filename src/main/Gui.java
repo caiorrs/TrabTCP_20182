@@ -25,6 +25,7 @@ public class Gui extends JFrame
 {
 	private JLabel txtNomePrograma;
 	private String titulo = "Text Music Player";
+	private static boolean toggleTexto = false;
 	
 	public static void main(String[] args)
 	{
@@ -56,7 +57,6 @@ public class Gui extends JFrame
 		setTitle(titulo);
 		
 		// Componentes
-		//JFrame janela = new JFrame();
 		JTextArea entradaTexto = new JTextArea();
 		JButton btnCarregarTexto = new JButton("Abrir arquivo");
 		JButton btnSalvarMidi = new JButton("Salvar em MIDI");
@@ -64,8 +64,7 @@ public class Gui extends JFrame
 		JButton btnReproduzir = new JButton("Reproduzir");
 		JButton btnPausar = new JButton("Pausar");
 		JButton btnParar = new JButton("Parar"); // Stop
-		JButton btnReiniciar = new JButton("Reiniciar");
-		//JScrollPane sp = new JScrollPane(entradaTexto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane sp = new JScrollPane(entradaTexto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		
 		setLayout(null);
@@ -87,10 +86,10 @@ public class Gui extends JFrame
 		// Caixa de Texto
 /*===================================================================*/		
 		
-		entradaTexto.setBounds(89, 121, 346, 156);
-		add(entradaTexto);
-		entradaTexto.setLineWrap(true);
-		entradaTexto.setWrapStyleWord(true);
+			entradaTexto.setLineWrap(true);
+			entradaTexto.setWrapStyleWord(true);
+			sp.setBounds(89, 121, 346, 156);
+			add(sp);
 
 /*===================================================================*/
 		// Primeira linha de botões - Abrir Arquivo - Salvar para Midi - Limpar Texto
@@ -120,7 +119,6 @@ public class Gui extends JFrame
 		btnSalvarMidi.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) {
-				//System.out.println("SALVAR MIDI AINDA NAO IMPLEMENTADO!");
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Digite o nome do arquivo para salvar");
 				 
@@ -151,7 +149,7 @@ public class Gui extends JFrame
 		add(btnLimparTexto);
 		
 /*===================================================================*/
-		// Segunda linha de botões - Reproduzir - Pausar - Parar - Reiniciar Reprodução 
+		// Segunda linha de botões - Reproduzir - Pausar - Parar 
 /*===================================================================*/
 		// Botão Reproduzir
 		
@@ -160,14 +158,18 @@ public class Gui extends JFrame
 			
 			public void actionPerformed(ActionEvent arg0)
 			{
+				String texto = entradaTexto.getText();
+				btnPausar.setText("Pausar");
+				toggleTexto = false;
+				
 				if(Operacoes.isFinished() || !Operacoes.isStarted())
 				{
-					String texto = entradaTexto.getText();
 					Operacoes.reproduzir(texto);
 				}
 				else if(Operacoes.isStarted()) 
 				{
 					Operacoes.parar();
+					Operacoes.reproduzir(texto);
 				}
 			}
 		});
@@ -176,12 +178,24 @@ public class Gui extends JFrame
 		
 		// Botão Pausar
 		
+		
+		
 		btnPausar.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (!Operacoes.isFinished() && Operacoes.isStarted())
+				if (Operacoes.isPlaying() || Operacoes.isPaused())
 				{
+					if(!toggleTexto)
+					{
+						btnPausar.setText("Continuar");
+					}
+					else
+					{
+						btnPausar.setText("Pausar");
+					}
+					toggleTexto = !toggleTexto;
+					
 					Operacoes.pausar();
 				}
 			}
@@ -195,30 +209,12 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				if (Operacoes.isPlaying())
-				{
-					Operacoes.parar();
-				}
+				btnPausar.setText("Pausar");
+				toggleTexto = false;
+				Operacoes.parar();
 			}
 		});
 		btnParar.setBounds(280, 352, 80, 23);
 		add(btnParar);
-		
-		
-		// Botão Reiniciar Reprodução
-		
-		btnReiniciar.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				String texto = entradaTexto.getText();
-				
-				Operacoes.parar();
-				Operacoes.reproduzir(texto);
-			}
-		});
-		
-		btnReiniciar.setBounds(400, 352, 100, 23);
-		add(btnReiniciar);
 	}
 }
