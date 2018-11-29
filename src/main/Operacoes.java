@@ -1,7 +1,6 @@
 package main;
 
 import org.jfugue.player.ManagedPlayer;
-import org.jfugue.player.ManagedPlayerListener;
 import org.staccato.StaccatoParser;
 import org.jfugue.midi.MidiParserListener;
 
