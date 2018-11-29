@@ -6,6 +6,7 @@ public class parseTexto{
 	private static int instrumentoAtual = 0;
 	private static int oitavaAtual = 5;
 	private static String volume = "X[Volume]=";
+	private static String separadorDeInstrucoes = " ";
 	
 	private static final int harpsichord = 7;
 	private static final int tubularBells = 15;
@@ -114,11 +115,10 @@ public class parseTexto{
 						}
 						break;
 				}
-
-				if(i != tamanhoEntrada - 1)
-				{
-					parsedEntry.append(" ");
-				}
+			}
+			if(i != tamanhoEntrada - 1)
+			{
+				parsedEntry.append(separadorDeInstrucoes);
 			}
 		}
 		return parsedEntry;

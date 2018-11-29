@@ -1,7 +1,6 @@
 package main;
 
 import org.jfugue.player.ManagedPlayer;
-import org.jfugue.player.ManagedPlayerListener;
 import org.staccato.StaccatoParser;
 import org.jfugue.midi.MidiParserListener;
 
@@ -31,48 +30,6 @@ public class Operacoes
 			parser.addParserListener(listener);
 			parser.parse(parsedEntry.toString());
 			sequence = listener.getSequence();
-
-			player.addManagedPlayerListener(new ManagedPlayerListener()
-			{
-				@Override
-				public void onFinished()
-				{
-					// TODO Auto-generated method stub
-				}
-
-				@Override
-				public void onPaused()
-				{
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void onReset()
-				{
-					// TODO Auto-generated method stub
-				}
-
-				@Override
-				public void onResumed()
-				{
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void onSeek(long arg0)
-				{
-					// TODO Auto-generated method stub
-					
-				}
-
-				@Override
-				public void onStarted(Sequence arg0)
-				{
-					// TODO Auto-generated method stub
-				}
-			});
 			
 			player.start(sequence);
 			//System.out.print(player.isPlaying());
