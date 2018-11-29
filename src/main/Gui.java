@@ -68,7 +68,7 @@ public class Gui extends JFrame
 		JScrollPane sp = new JScrollPane(entradaTexto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		
-		setLayout(null);
+		getContentPane().setLayout(null);
 		
 /*===================================================================*/		
 		// Título do Programa
@@ -81,7 +81,7 @@ public class Gui extends JFrame
 		txtNomePrograma.setSize(new Dimension(9, 9));
 		txtNomePrograma.setText(titulo);
 		txtNomePrograma.setBounds(89, 53, 346, 57);
-		add(txtNomePrograma);
+		getContentPane().add(txtNomePrograma);
 		
 /*===================================================================*/		
 		// Caixa de Texto
@@ -90,7 +90,7 @@ public class Gui extends JFrame
 			entradaTexto.setLineWrap(true);
 			entradaTexto.setWrapStyleWord(true);
 			sp.setBounds(89, 121, 346, 156);
-			add(sp);
+			getContentPane().add(sp);
 
 /*===================================================================*/
 		// Primeira linha de botões - Abrir Arquivo - Salvar para Midi - Limpar Texto
@@ -112,8 +112,8 @@ public class Gui extends JFrame
 				}
 			}
 		});
-		btnCarregarTexto.setBounds(46, 299, 150, 23);
-		add(btnCarregarTexto);
+		btnCarregarTexto.setBounds(118, 355, 150, 23);
+		getContentPane().add(btnCarregarTexto);
 		
 		// Botão para Salvar em MIDI
 		
@@ -135,8 +135,8 @@ public class Gui extends JFrame
 				}
 			}
 		});
-		btnSalvarMidi.setBounds(200, 299, 150, 23);
-		add(btnSalvarMidi);
+		btnSalvarMidi.setBounds(272, 355, 150, 23);
+		getContentPane().add(btnSalvarMidi);
 		
 		// Botão para Limpar a Caixa de Texto
 		
@@ -147,7 +147,7 @@ public class Gui extends JFrame
 			}
 		});
 		btnLimparTexto.setBounds(380, 299, 123, 23);
-		add(btnLimparTexto);
+		getContentPane().add(btnLimparTexto);
 		
 /*===================================================================*/
 		// Segunda linha de botões - Reproduzir - Pausar - Parar 
@@ -174,8 +174,8 @@ public class Gui extends JFrame
 				}
 			}
 		});
-		btnReproduzir.setBounds(20, 352, 120, 23);
-		add(btnReproduzir);
+		btnReproduzir.setBounds(29, 299, 120, 23);
+		getContentPane().add(btnReproduzir);
 		
 		// Botão Pausar
 		
@@ -201,8 +201,8 @@ public class Gui extends JFrame
 				}
 			}
 		});
-		btnPausar.setBounds(150, 352, 105, 23);
-		add(btnPausar);
+		btnPausar.setBounds(159, 299, 105, 23);
+		getContentPane().add(btnPausar);
 		
 		// Botão Parar
 		
@@ -215,7 +215,7 @@ public class Gui extends JFrame
 				Operacoes.parar();
 			}
 		});
-		btnParar.setBounds(280, 352, 80, 23);
-		add(btnParar);
+		btnParar.setBounds(274, 299, 80, 23);
+		getContentPane().add(btnParar);
 	}
 }
