@@ -103,7 +103,7 @@ public class operacoes {
 							volumeAtual += volumeAtual  * 0.1;
 							parsedEntry.append("X[Volume]=");
 							parsedEntry.append(volumeAtual);
-							break;
+							break; 
 
 					// Oitavas
 						case '?':
