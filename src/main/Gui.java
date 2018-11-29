@@ -9,22 +9,23 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
-import java.awt.Dimension;
-import java.awt.Font;
-
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
 
+
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import org.jfugue.pattern.Pattern;
 
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.awt.event.ActionEvent;
+
 
 public class Gui extends JFrame
 {
 	private JLabel txtNomePrograma;
-	private String titulo = "Text Music Player";
+	private String titulo = "TCPlayer";
 	private static boolean toggleTexto = false;
 	
 	public static void main(String[] args)
