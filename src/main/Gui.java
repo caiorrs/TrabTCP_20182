@@ -141,7 +141,6 @@ public class Gui extends JFrame
 					String texto = entradaTexto.getText();
 					StringBuilder parsedEntry = parseTexto.parse(texto);
 					Pattern patternParaSalvar = new Pattern(parsedEntry.toString());
-
 					Arquivo.escreveMIDI(patternParaSalvar, fileChooser.getSelectedFile());
 					//System.out.println("Save as file: " + fileToSave.getAbsolutePath());
 				}

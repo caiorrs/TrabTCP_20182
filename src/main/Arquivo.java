@@ -49,6 +49,11 @@ public class Arquivo extends Texto
 	
 	public static void escreveMIDI(Pattern pattern, File arquivo)
 	{
+		String caminho = arquivo.getAbsolutePath();
+		if(!caminho.endsWith(".midi"))
+		{
+			arquivo = new File(caminho + ".midi");
+		}
 		try {
 			MidiFileManager.savePatternToMidi(pattern, arquivo);
 		} catch (IOException e) {
