@@ -11,19 +11,23 @@ import org.jfugue.pattern.Pattern;
 
 public class Arquivo extends Texto
 {
-	public static void leArquivo(File arquivo)
+	public static void leArquivo(File localArquivo)
 	{
-		FileInputStream bufferfile = null;
 		String tempTexto = "";
+		final int fimArquivo = -1;
+		final FileInputStream arquivoVazio = null;
+		FileInputStream arquivo = arquivoVazio;
 		
 		try 
 		{
-			bufferfile = new FileInputStream(arquivo);
-			int content = 0;
+			arquivo = new FileInputStream(localArquivo);
+			int posicaoArquivo = 0;
 			
-			while((content = bufferfile.read()) != -1)
+			posicaoArquivo = arquivo.read();
+			
+			while(posicaoArquivo != fimArquivo)
 			{
-				tempTexto += (char) content;
+				tempTexto += (char) posicaoArquivo;
 			}
 		}
 		catch (IOException e)
@@ -34,9 +38,9 @@ public class Arquivo extends Texto
 		{
 			try
 			{
-				if(bufferfile != null)
+				if(arquivo != null)
 				{
-					bufferfile.close();
+					arquivo.close();
 				}
 			}
 			catch (IOException e)

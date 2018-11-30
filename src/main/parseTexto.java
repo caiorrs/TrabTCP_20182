@@ -1,11 +1,8 @@
 package main;
 
-public class parseTexto{
+public class parseTexto extends Texto{
 	
-	private static int volumeAtual = 10200;
-	private static int instrumentoAtual = 0;
-	private static int oitavaAtual = 5;
-	private static String volume = "X[Volume]=";
+	
 	private static String separadorDeInstrucoes = " ";
 	
 	private static final int harpsichord = 7;
@@ -13,13 +10,33 @@ public class parseTexto{
 	private static final int panFlute = 76;
 	private static final int churchOrgan = 20;
 
+	private static StringBuilder trocaInstrumento(int novoInstrumento, instrumento instrumento, StringBuilder parsedEntry)
+	{
+		novoInstrumento = harpsichord;
+		parsedEntry.append(instrumento.toString(novoInstrumento));
+		instrumento.setInstrumentoAtual(harpsichord);
+		return parsedEntry;
+	}
+	
+	private static StringBuilder alteraVolume(volume volume, StringBuilder parsedEntry)
+	{
+		int volumeAtual = 0;
+	
+		volume.dobraVolume();
+		volumeAtual = volume.getVolumeAtual();
+		parsedEntry.append(volume.getVolume());
+		parsedEntry.append(volumeAtual);
+		
+		return parsedEntry;
+	}
+	
 	public static StringBuilder parse(String texto) {
 		
 		boolean notaAnteriorValida = false;
 		boolean caractereEhDigito = false;
 		int digito = 0;
 		int posicaoInicial = 0;
-		char caractere = ' ';
+		char caractereNovo = ' ';
 		char caractereAnterior = ' ';
 		
 		int tamanhoEntrada = texto.length();
@@ -28,19 +45,28 @@ public class parseTexto{
 		for (int i = posicaoInicial; i < tamanhoEntrada; i++)
 		{
 			caractereEhDigito = Character.isDigit(texto.charAt(i));
-			digito = Character.getNumericValue(texto.charAt(i));
 			
 			if(caractereEhDigito)
-			{
+			{ 
+				instrumento instrumento = new instrumento();
+				digito = Character.getNumericValue(texto.charAt(i));
+				int instrumentoAtual;
+				int novoInstrumento = 0;
 				
+				instrumentoAtual = instrumento.getInstrumentoAtual();
 				parsedEntry.append("I");
-				instrumentoAtual = Som.trocaInstrumento(instrumentoAtual, digito) ;
-				parsedEntry.append(instrumentoAtual);
+				
+				instrumento.trocaInstrumento(digito);
+				novoInstrumento = instrumento.getInstrumentoAtual();
+				parsedEntry.append(novoInstrumento);
 			}
 			else
 			{
-				caractere = texto.charAt(i);
-				switch(caractere)
+				instrumento instrumento = new instrumento();
+				volume volume = new volume();
+				oitava Oitava = new oitava();
+				caractereNovo = texto.charAt(i);
+				switch(caractereNovo)
 				{
 				// Notas
 					case 'A':
@@ -50,32 +76,32 @@ public class parseTexto{
 					case 'E':
 					case 'F':
 					case 'G':
-						parsedEntry.append(caractere);
+						
+						oitava oitava = new oitava();
+						int oitavaAtual = 0;
+						
+						oitavaAtual = oitava.getOitavaAtual();
+						parsedEntry.append(caractereNovo);
 						parsedEntry.append(oitavaAtual);
 						break;
 
 				// Instrumentos
 					case '!':
-						parsedEntry.append("I7");
-						instrumentoAtual = harpsichord;
+						parsedEntry = trocaInstrumento(harpsichord,instrumento, parsedEntry);
 						break;
 					case ';':
-						parsedEntry.append("I76");
-						instrumentoAtual = panFlute;
+						parsedEntry = trocaInstrumento(panFlute,instrumento, parsedEntry);
 						break;
 					case '\n':
-						parsedEntry.append("I15");
-						instrumentoAtual = tubularBells;
+						parsedEntry = trocaInstrumento(tubularBells,instrumento, parsedEntry);
 						break;
 					case ',':
-						parsedEntry.append("I20");
-						instrumentoAtual = churchOrgan;
+						parsedEntry = trocaInstrumento(churchOrgan,instrumento, parsedEntry);
 						break;
 				// Volume
 					case ' ':
-						volumeAtual = Som.dobraVolume(volumeAtual);
-						parsedEntry.append(volume);
-						parsedEntry.append(volumeAtual);
+						parsedEntry = alteraVolume(volume, parsedEntry);
+						
 						break;
 					case 'i':
 					case 'I':
@@ -83,14 +109,14 @@ public class parseTexto{
 					case 'O':
 					case 'u':
 					case 'U':
-						volumeAtual = Som.aumentaVolumeDezPorcento(volumeAtual);
-						parsedEntry.append(volume);
-						parsedEntry.append(volumeAtual);
+						parsedEntry = alteraVolume(volume, parsedEntry);parsedEntry = alteraVolume(volume, parsedEntry);
 						break;
 				// Oitavas
 					case '?':
 					case '.':
-						oitavaAtual = Som.aumentaOitava(oitavaAtual);
+						
+						
+						Oitava.aumentaOitava();
 						break;
 				// Else
 					default: // Cobre minusculas, consoantes e qualquer outra coisa
@@ -101,8 +127,9 @@ public class parseTexto{
 							
 							if (notaAnteriorValida)
 							{
+								int OitavaAtual = Oitava.getOitavaAtual();
 								parsedEntry.append(texto.charAt(i-1));
-								parsedEntry.append(oitavaAtual);
+								parsedEntry.append(OitavaAtual);
 							}
 							else
 							{
