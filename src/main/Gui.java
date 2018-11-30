@@ -19,12 +19,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import org.jfugue.pattern.Pattern;
+import java.awt.Color;
 
 
 
 public class Gui extends JFrame
 {
 	private JLabel txtNomePrograma;
+	private static JLabel lblStatus = new JLabel("Parado");
 	private String titulo = "TCPlayer";
 	private static boolean toggleTexto = false;
 	
@@ -42,6 +44,8 @@ public class Gui extends JFrame
 					frame.setLocationRelativeTo(null);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
+					Operacoes.setLabel(lblStatus);
+					
 				}
 				catch (Exception e) {
 					e.printStackTrace();
@@ -82,6 +86,17 @@ public class Gui extends JFrame
 		txtNomePrograma.setText(titulo);
 		txtNomePrograma.setBounds(89, 53, 346, 57);
 		getContentPane().add(txtNomePrograma);
+	
+/*===================================================================*/		
+		// Status do player
+/*===================================================================*/	
+		
+		lblStatus.setBackground(Color.WHITE);
+		lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStatus.setForeground(Color.BLACK);
+		lblStatus.setBounds(232, 296, 64, 14);
+		getContentPane().add(lblStatus);
 		
 /*===================================================================*/		
 		// Caixa de Texto
@@ -146,7 +161,7 @@ public class Gui extends JFrame
 				entradaTexto.setText(null);
 			}
 		});
-		btnLimparTexto.setBounds(380, 299, 123, 23);
+		btnLimparTexto.setBounds(381, 321, 123, 23);
 		getContentPane().add(btnLimparTexto);
 		
 /*===================================================================*/
@@ -162,7 +177,8 @@ public class Gui extends JFrame
 				String texto = entradaTexto.getText();
 				btnPausar.setText("Pausar");
 				toggleTexto = false;
-				
+				lblStatus.setText("Rodando");
+				lblStatus.setForeground(Color.GREEN);
 				if(Operacoes.isFinished() || !Operacoes.isStarted())
 				{
 					Operacoes.reproduzir(texto);
@@ -174,7 +190,7 @@ public class Gui extends JFrame
 				}
 			}
 		});
-		btnReproduzir.setBounds(29, 299, 120, 23);
+		btnReproduzir.setBounds(30, 321, 120, 23);
 		getContentPane().add(btnReproduzir);
 		
 		// Botão Pausar
@@ -190,10 +206,14 @@ public class Gui extends JFrame
 					if(!toggleTexto)
 					{
 						btnPausar.setText("Continuar");
+						lblStatus.setText("Pausado");
+						lblStatus.setForeground(Color.RED);
 					}
 					else
 					{
 						btnPausar.setText("Pausar");
+						lblStatus.setText("Rodando");
+						lblStatus.setForeground(Color.GREEN);
 					}
 					toggleTexto = !toggleTexto;
 					
@@ -201,7 +221,7 @@ public class Gui extends JFrame
 				}
 			}
 		});
-		btnPausar.setBounds(159, 299, 105, 23);
+		btnPausar.setBounds(160, 321, 105, 23);
 		getContentPane().add(btnPausar);
 		
 		// Botão Parar
@@ -211,11 +231,14 @@ public class Gui extends JFrame
 			public void actionPerformed(ActionEvent arg0)
 			{
 				btnPausar.setText("Pausar");
+				lblStatus.setText("Parado");
+				lblStatus.setForeground(Color.BLACK);
 				toggleTexto = false;
 				Operacoes.parar();
 			}
 		});
-		btnParar.setBounds(274, 299, 80, 23);
+		btnParar.setBounds(275, 321, 80, 23);
 		getContentPane().add(btnParar);
+
 	}
 }
