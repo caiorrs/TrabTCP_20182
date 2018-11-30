@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import java.awt.Color;
@@ -112,6 +113,7 @@ public class Gui extends JFrame
 			public void actionPerformed(ActionEvent arg0)
 			{
 				JFileChooser File = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				File.setFileFilter(new FileNameExtensionFilter("Arquivos de Texto", "txt", "text"));
 				int returnValue = File.showOpenDialog(null);
 				if(returnValue == JFileChooser.APPROVE_OPTION)
 				{
@@ -130,6 +132,7 @@ public class Gui extends JFrame
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivo MIDI", "midi"));
 				fileChooser.setDialogTitle("Digite o nome do arquivo para salvar");
 				 
 				int userSelection = fileChooser.showSaveDialog(getContentPane());
