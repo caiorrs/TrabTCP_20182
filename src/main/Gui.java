@@ -50,11 +50,8 @@ public class Gui extends JFrame
 		});
 	}
 	
-	
-	
 	public Gui()
 	{
-		
 		setTitle(titulo);
 		
 		// Componentes
@@ -103,7 +100,6 @@ public class Gui extends JFrame
 			{
 				JFileChooser File = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 				int returnValue = File.showOpenDialog(null);
-				
 				if(returnValue == JFileChooser.APPROVE_OPTION)
 				{
 					Arquivo arquivo = new Arquivo();
