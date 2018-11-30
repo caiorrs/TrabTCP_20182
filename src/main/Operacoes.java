@@ -1,18 +1,21 @@
 package main;
 
 import org.jfugue.player.ManagedPlayer;
+import org.jfugue.player.ManagedPlayerListener;
 import org.staccato.StaccatoParser;
 import org.jfugue.midi.MidiParserListener;
 
+import java.awt.Color;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Sequence;
+import javax.swing.JLabel;
 
 public class Operacoes
 {
 	private static ManagedPlayer player = new ManagedPlayer();
-
+	private static JLabel labelStatus;
 	public static void reproduzir(String texto)
 	{
 		
@@ -30,6 +33,26 @@ public class Operacoes
 			parser.addParserListener(listener);
 			parser.parse(parsedEntry.toString());
 			sequence = listener.getSequence();
+			
+			player.addManagedPlayerListener(new ManagedPlayerListener() {
+				@Override
+				public void onFinished() {
+					// TODO Auto-generated method stub
+					labelStatus.setText("Parado");
+					labelStatus.setForeground(Color.BLACK);
+				}
+
+				@Override
+				public void onPaused() {}
+				@Override
+				public void onReset() {}
+				@Override
+				public void onResumed() {}
+				@Override
+				public void onSeek(long arg0) {}
+				@Override
+				public void onStarted(Sequence arg0) {}
+			});
 			
 			player.start(sequence);
 			//System.out.print(player.isPlaying());
@@ -83,5 +106,10 @@ public class Operacoes
 	public static boolean isPaused()
 	{
 		return player.isPaused();
+	}
+	
+	public static void setStatusLabel(JLabel lblStatus)
+	{
+		labelStatus = lblStatus;
 	}
 }
