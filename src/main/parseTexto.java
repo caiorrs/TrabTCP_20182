@@ -12,9 +12,8 @@ public class parseTexto extends Texto{
 
 	private static StringBuilder trocaInstrumento(int novoInstrumento, instrumento instrumento, StringBuilder parsedEntry)
 	{
-		novoInstrumento = harpsichord;
 		parsedEntry.append(instrumento.toString(novoInstrumento));
-		instrumento.setInstrumentoAtual(harpsichord);
+		instrumento.setInstrumentoAtual(novoInstrumento);
 		return parsedEntry;
 	}
 	
