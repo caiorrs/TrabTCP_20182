@@ -9,6 +9,10 @@ public class parseTexto extends Texto{
 	private static final int tubularBells = 15;
 	private static final int panFlute = 76;
 	private static final int churchOrgan = 20;
+	
+	private static final instrumento instrumento = new instrumento();
+	private static final volume volume = new volume();
+	private static final oitava Oitava = new oitava();
 
 	private static StringBuilder trocaInstrumento(int novoInstrumento, instrumento instrumento, StringBuilder parsedEntry)
 	{
@@ -47,7 +51,7 @@ public class parseTexto extends Texto{
 			
 			if(caractereEhDigito)
 			{ 
-				instrumento instrumento = new instrumento();
+				//instrumento instrumento = new instrumento();
 				digito = Character.getNumericValue(texto.charAt(i));
 				int instrumentoAtual;
 				int novoInstrumento = 0;
@@ -61,9 +65,6 @@ public class parseTexto extends Texto{
 			}
 			else
 			{
-				instrumento instrumento = new instrumento();
-				volume volume = new volume();
-				oitava Oitava = new oitava();
 				caractereNovo = texto.charAt(i);
 				switch(caractereNovo)
 				{
@@ -76,10 +77,10 @@ public class parseTexto extends Texto{
 					case 'F':
 					case 'G':
 						
-						oitava oitava = new oitava();
+						//oitava oitava = new oitava();
 						int oitavaAtual = 0;
 						
-						oitavaAtual = oitava.getOitavaAtual();
+						oitavaAtual = Oitava.getOitavaAtual();
 						parsedEntry.append(caractereNovo);
 						parsedEntry.append(oitavaAtual);
 						break;

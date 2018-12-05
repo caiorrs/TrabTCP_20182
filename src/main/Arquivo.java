@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.sound.midi.InvalidMidiDataException;
 import javax.swing.JOptionPane;
 
 import org.jfugue.midi.MidiFileManager;
@@ -60,4 +61,5 @@ public class Arquivo extends Texto
 			e.printStackTrace();
 		}
 	}
+	
 }
