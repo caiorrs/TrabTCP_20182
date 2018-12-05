@@ -45,6 +45,7 @@ public class Gui extends JFrame
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
 					Operacoes.setStatusLabel(lblStatus);
+					
 				}
 				catch (Exception e) {
 					e.printStackTrace();
